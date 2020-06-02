@@ -1,0 +1,32 @@
+<aura:component controller="BoatController" >
+    <aura:attribute name="options" type="List" default="[]"/>
+    <aura:attribute name="isCreateRecord" type="Boolean" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+      <aura:registerEvent name="formsubmit" type="c:FormSubmit"/>
+       <lightning:layout horizontalAlign="center" verticalAlign="end">   
+        <lightning:layoutItem padding="around-small">
+
+            <lightning:select aura:id="select" name="searchForm" label="" onchange="{! c.handleChange }">
+                <option value="">All Types</option>
+                <aura:iteration items="{!v.options}" var="opt">
+                        <option text="{!opt.label}" value="{!opt.value}"></option>
+                    </aura:iteration>
+            </lightning:select>
+            
+            <!--<lightning:combobox name="searchForm" label="" placeholder="All Types" options="{! v.options }" onchange="{! c.handleChange }"/>-->           
+          
+        </lightning:layoutItem>  
+        <lightning:layoutItem padding="around-small">
+       
+        <lightning:button label="Search"  variant="neutral" onclick="{! c.onFormSubmit }"/>
+   
+        <aura:if isTrue="{!v.isCreateRecord}">
+    
+         <lightning:button  label="New" variant="brand"  onclick="{! c.handleNew}" />
+           
+        </aura:if>
+        
+        </lightning:layoutItem>
+ </lightning:layout>
+
+</aura:component>
